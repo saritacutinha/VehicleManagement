@@ -15,6 +15,8 @@
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
@@ -32,6 +34,23 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200622035935_SeedDatabase_VehicleType.cs" />
+    <Compile Remove="Migrations\20200622035935_SeedDatabase_VehicleType.Designer.cs" />
+    <Compile Remove="Migrations\20200622054635_AddVehicle.cs" />
+    <Compile Remove="Migrations\20200622054635_AddVehicle.Designer.cs" />
+    <Compile Remove="Migrations\20200622082250_Car.cs" />
+    <Compile Remove="Migrations\20200622082250_Car.Designer.cs" />
+    <Compile Remove="Migrations\20200622082715_AddVehicles.cs" />
+    <Compile Remove="Migrations\20200622082715_AddVehicles.Designer.cs" />
+    <Compile Remove="Migrations\20200622084544_AddVehicles.cs" />
+    <Compile Remove="Migrations\20200622084544_AddVehicles.Designer.cs" />
+    <Compile Remove="Migrations\20200622084713_Car.cs" />
+    <Compile Remove="Migrations\20200622084713_Car.Designer.cs" />
+    <Compile Remove="Migrations\20200622085917_SeedDatabase_VehicleType.cs" />
+    <Compile Remove="Migrations\20200622085917_SeedDatabase_VehicleType.Designer.cs" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
