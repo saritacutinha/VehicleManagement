@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,8 +34,16 @@ namespace VehicleManagement.Controllers
             }               
             var vehicle = mapper.Map<CarResource, Car>(vehicleResource);
             vehicle.LastUpdate = DateTime.Now;
-            context.Vehicles.Add(vehicle);
+            context.Vehicles.Add(vehicle);            
             await context.SaveChangesAsync();
+
+           
+            
+                 
+
+
+
+
             return Ok(vehicle);
         }
     }
