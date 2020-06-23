@@ -37,6 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200622035825_VehicleType.cs" />
+    <Compile Remove="Migrations\20200622035825_VehicleType.Designer.cs" />
     <Compile Remove="Migrations\20200622035935_SeedDatabase_VehicleType.cs" />
     <Compile Remove="Migrations\20200622035935_SeedDatabase_VehicleType.Designer.cs" />
     <Compile Remove="Migrations\20200622054635_AddVehicle.cs" />
@@ -51,6 +53,10 @@
     <Compile Remove="Migrations\20200622084713_Car.Designer.cs" />
     <Compile Remove="Migrations\20200622085917_SeedDatabase_VehicleType.cs" />
     <Compile Remove="Migrations\20200622085917_SeedDatabase_VehicleType.Designer.cs" />
+    <Compile Remove="Migrations\20200622090038_AddVehicles.cs" />
+    <Compile Remove="Migrations\20200622090038_AddVehicles.Designer.cs" />
+    <Compile Remove="Migrations\20200622090302_SeedDatabase_VehicleType.cs" />
+    <Compile Remove="Migrations\20200622090302_SeedDatabase_VehicleType.Designer.cs" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

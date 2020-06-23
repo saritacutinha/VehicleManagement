@@ -10,8 +10,8 @@ using VehicleManagement.Persistence;
 namespace VehicleManagement.Migrations
 {
     [DbContext(typeof(VehicleManagementDbContext))]
-    [Migration("20200622090302_SeedDatabase_VehicleType")]
-    partial class SeedDatabase_VehicleType
+    [Migration("20200623003415_SeedDatabase_VehicleTypes")]
+    partial class SeedDatabase_VehicleTypes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -142,7 +142,7 @@ namespace VehicleManagement.Migrations
                         .IsRequired();
 
                     b.HasOne("VehicleManagement.Models.VehicleType", "Type")
-                        .WithMany()
+                        .WithMany("Vehicles")
                         .HasForeignKey("VehicleTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -140,7 +140,7 @@ namespace VehicleManagement.Migrations
                         .IsRequired();
 
                     b.HasOne("VehicleManagement.Models.VehicleType", "Type")
-                        .WithMany()
+                        .WithMany("Vehicles")
                         .HasForeignKey("VehicleTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

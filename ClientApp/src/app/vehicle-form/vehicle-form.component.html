@@ -1,39 +1,40 @@
 
-<h1>New Vehicle</h1>
-<form>
+<h3>New Vehicle</h3>
+<p> {{vehicle | json}}</p>
+<form (ngSubmit)="submit()">
   <div class="form-group">
     <label for="make">Make</label>
-    <select id="make" class="form-control" (change)="onMakeChange()" [(ngModel)]="vehicle.make" name="make">
+    <select id="make" class="form-control" (change)="onMakeChange()" [(ngModel)]="vehicle.makeId" name="makeId">
       <option value=""></option>
       <option *ngFor="let m of makes" value="{{ m.id }}">{{ m.name }}</option>
     </select>
   </div>
   <div class="form-group">
     <label for="model">Model</label>
-    <select id="model" class="form-control">
+    <select id="model" class="form-control"  [(ngModel)]="vehicle.modelId" name="modelId">
       <option value=""></option>
       <option *ngFor="let m of models" value="{{ m.id }}">{{ m.name }}</option>
     </select>
   </div>
   <div class="form-group">
     <label for="type">Vehicle Type</label>
-    <select id="type" class="form-control">
+    <select id="type" class="form-control" [(ngModel)]="vehicle.typeId" name="typeId" >
       <option value=""></option>
       <option *ngFor="let t of types" value="{{ t.id }}">{{ t.name }}</option>
     </select>
   </div>
-  <h3>Features</h3>
+  <h4>Features</h4>
   <div class="form-group">
     <label id="engine">Engine</label>
-    <input id="engine" type="text" value="" class="form-control" />
+    <input id="engine" type="text" value="" class="form-control" [(ngModel)]="vehicle.engine" name="engine"/>
   </div>
   <div class="form-group">
     <label id="doors">No Of Doors</label>
-    <input id="doors"type="text" value="" class="form-control" />
+    <input id="doors"type="text" value="" class="form-control"[(ngModel)]="vehicle.doors" name="doors" />
   </div>
   <div class="form-group">
     <label id="wheels">No Of Wheels</label>
-    <input id="wheels" type="text" value="" class="form-control" />
+    <input id="wheels" type="text" value="" class="form-control" [(ngModel)]="vehicle.wheels" name="wheels"/>
   </div>
-
+  <button class="btn-primary">Save</button>
 </form>
