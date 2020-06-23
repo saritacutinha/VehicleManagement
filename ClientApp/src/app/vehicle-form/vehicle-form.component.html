@@ -11,14 +11,14 @@
   </div>
   <div class="form-group">
     <label for="model">Model</label>
-    <select id="model" class="form-control"  [(ngModel)]="vehicle.modelId" name="modelId">
+    <select id="model" class="form-control" type ="number" [(ngModel)]="vehicle.modelId" name="modelId">
       <option value=""></option>
       <option *ngFor="let m of models" value="{{ m.id }}">{{ m.name }}</option>
     </select>
   </div>
   <div class="form-group">
     <label for="type">Vehicle Type</label>
-    <select id="type" class="form-control" [(ngModel)]="vehicle.VehicleTypeId" name="VehicleTypeId" >
+    <select id="type" type ="number" class="form-control" [(ngModel)]="vehicle.vehicleTypeId" name="vehicleTypeId" >
       <option value=""></option>
       <option *ngFor="let t of types" value="{{ t.id }}">{{ t.name }}</option>
     </select>
@@ -30,11 +30,11 @@
   </div>
   <div class="form-group">
     <label id="door">No Of Doors</label>
-    <input id="door"type="text" value="" class="form-control"[(ngModel)]="vehicle.door" name="door" />
+    <input id="door"type="number" value="" class="form-control"[(ngModel)]="vehicle.door" name="door" />
   </div>
   <div class="form-group">
     <label id="wheel">No Of Wheels</label>
-    <input id="wheel" type="text" value="" class="form-control" [(ngModel)]="vehicle.wheel" name="wheel"/>
+    <input id="wheel" type="number" value="" class="form-control" [(ngModel)]="vehicle.wheel" name="wheel"/>
   </div>
   <button class="btn-primary">Save</button>
 </form>

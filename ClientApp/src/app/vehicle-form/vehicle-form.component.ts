@@ -13,7 +13,7 @@ export class VehicleFormComponent implements OnInit {
   makes: any[] = new Array();
   types: any[] = new Array();
   models: any[] = new Array();
-  vehicle: any = {};
+  vehicle: any = {}
 
   constructor(private vehicleService: VehicleService) { }
 
@@ -28,7 +28,14 @@ export class VehicleFormComponent implements OnInit {
     this.models = selectedMake ? selectedMake.models : [];
     delete this.vehicle.modelId;
   }
-  submit() {   
+  toShort(number) {
+  const int16 = new Int16Array(1)
+  int16[0] = number
+  return int16[0]
+}
+  submit() {
+    this.vehicle.modelId = parseInt(this.vehicle.modelId);
+    this.vehicle.vehicleTypeId = this.toShort(this.vehicle.vehicleTypeId);   
     this.vehicleService.create(this.vehicle).subscribe(x => console.log(x));
   }
 }

@@ -10,6 +10,7 @@ using VehicleManagement.Persistence;
 using AutoMapper;
 using VehicleManagement.Mapping;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
 
 namespace VehicleManagement
 {
@@ -31,7 +32,8 @@ namespace VehicleManagement
             });
             services.AddSingleton(mappingConfig.CreateMapper());
             services.AddDbContext<VehicleManagementDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllersWithViews();
+            services.AddControllersWithViews();        
+            
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -44,7 +46,7 @@ namespace VehicleManagement
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+               app.UseDeveloperExceptionPage();
             }
             else
             {
