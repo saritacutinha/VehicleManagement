@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using VehicleManagement.Persistence;
 using AutoMapper;
 using VehicleManagement.Mapping;
+using Newtonsoft.Json;
 
 namespace VehicleManagement
 {

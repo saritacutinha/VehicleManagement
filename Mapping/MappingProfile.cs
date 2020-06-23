@@ -17,6 +17,9 @@ namespace VehicleManagement.Mapping
             CreateMap<VehicleType, VehicleTypeResource>();
             CreateMap<Vehicle, VehicleResource>();
             CreateMap<Car, CarResource>();
+            CreateMap<Vehicle, SaveVehicleResource>();
+            CreateMap<Car, SaveCarResource>();
+
             //Api resource to Domain
             CreateMap<SaveVehicleResource, Vehicle>();
             CreateMap<SaveCarResource, Car>();

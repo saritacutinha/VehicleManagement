@@ -36,13 +36,8 @@ namespace VehicleManagement.Controllers
             vehicle.LastUpdate = DateTime.Now;
             context.Cars.Add(vehicle);
             await context.SaveChangesAsync();
-            ////vehicle = await context.Cars
-            ////                 .Include(v => v.Model)
-            ////                    .ThenInclude(m => m.Make)
-            ////                .Include(vt => vt.Type)
-            ////                .SingleOrDefaultAsync(v => v.Id == vehicle.Id);
-            //var result = mapper.Map<Car, CarResource>(vehicle);
-            return Ok(vehicle);
+            var result =mapper.Map<Car, SaveCarResource>(vehicle);
+            return Ok(result);
         }
 
         //[HttpGet("/{id}")]

@@ -28,7 +28,7 @@ export class VehicleFormComponent implements OnInit {
     this.models = selectedMake ? selectedMake.models : [];
     delete this.vehicle.modelId;
   }
-  submit() {
+  submit() {   
     this.vehicleService.create(this.vehicle).subscribe(x => console.log(x));
   }
 }
