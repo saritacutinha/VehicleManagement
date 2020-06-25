@@ -13,10 +13,13 @@ namespace VehicleManagement.Mapping
         public MappingProfile()
         {
             CreateMap<Make, MakeResource>();
-            CreateMap<Model, ModelResource>();
-            CreateMap<VehicleType, VehicleTypeResource>();
-            CreateMap<Vehicle, VehicleResource>();
-            CreateMap<Car, CarResource>();
+            CreateMap<Make, KeyValuePairResource>();
+            CreateMap<Model, KeyValuePairResource>();
+            CreateMap<VehicleType, KeyValuePairResource>();
+            CreateMap<Vehicle, VehicleResource>()
+                .ForMember(vr => vr.Make, opt => opt.MapFrom(v => v.Model.Make));                            
+            CreateMap<Car, CarResource>()
+                .ForMember(vr => vr.Make, opt => opt.MapFrom(v => v.Model.Make)); 
             CreateMap<Vehicle, SaveVehicleResource>();
             CreateMap<Car, SaveCarResource>();
 

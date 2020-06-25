@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace VehicleManagement.Controllers.Resources
 {
-    public class CarResource :VehicleResource
+    public class CarResource : VehicleResource
     {
         public string Engine { get; set; }
         public int Door { get; set; }

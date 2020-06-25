@@ -21,10 +21,11 @@ namespace VehicleManagement.Controllers
             this.mapper = mapper;
         }
         [HttpGet("api/vehicleTypes")]
-        public async Task<IEnumerable<VehicleTypeResource>> GetVehicleTypes()
+        public async Task<IEnumerable<KeyValuePairResource>> GetVehicleTypes()
         {
             var vehicleTypes = await context.VehicleTypes.ToListAsync();
-            return mapper.Map<List<VehicleType>, List<VehicleTypeResource>>(vehicleTypes);
+            return mapper.Map<List<VehicleType>, List<KeyValuePairResource>>(vehicleTypes);
         }
+        
     }
 }

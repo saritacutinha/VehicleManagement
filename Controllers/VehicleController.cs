@@ -10,7 +10,8 @@ using VehicleManagement.Models;
 using VehicleManagement.Persistence;
 
 namespace VehicleManagement.Controllers
-{[Route("/api/vehicles")]
+{
+    [Route("/api/vehicles")]
     public class VehicleController : Controller
     {
         private readonly IMapper mapper;
@@ -32,28 +33,29 @@ namespace VehicleManagement.Controllers
                 ModelState.AddModelError("ModelId", "Invalid Model Id");
                 return BadRequest(ModelState);
             }
+
             var vehicle = mapper.Map<SaveCarResource, Car>(vehicleResource);
             vehicle.LastUpdate = DateTime.Now;
             context.Cars.Add(vehicle);
             await context.SaveChangesAsync();
-            var result =mapper.Map<Car, SaveCarResource>(vehicle);
+            var result = mapper.Map<Car, SaveCarResource>(vehicle);
             return Ok(result);
         }
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult>GetVehicles(int id)
+        {
+            
+            var vehicle = await context.Vehicles
+                            .Include(v => v.Type)
+                            .Include(v => v.Model)
+                           .ThenInclude(v => v.Make)
+                            .SingleOrDefaultAsync(v=>v.Id == id);
 
-        //[HttpGet("/{id}")]
-        //public async Task<IActionResult>GetVehicle(int id)
-        //{
-        //   var vehicle = await context.Vehicles
-        //                    .Include(v => v.Model)
-        //                       .ThenInclude(m => m.Make)
-        //                   .Include(vt => vt.Type)
-        //                   .SingleOrDefaultAsync(v => v.Id == id);
-        //    if(vehicle == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var vehicleResource = mapper.Map<Vehicle, VehicleResource>(vehicle);
-        //    return Ok(vehicleResource);
+            if (vehicle == null)
+                return NotFound();
+            var vehicleResource = mapper.Map<Vehicle, CarResource>(vehicle);
+            return Ok(vehicleResource);
+        }      
 
         }
 
