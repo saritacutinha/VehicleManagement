@@ -11,6 +11,7 @@ using AutoMapper;
 using VehicleManagement.Mapping;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Options;
+using VehicleManagement.Models;
 
 namespace VehicleManagement
 {
@@ -31,6 +32,7 @@ namespace VehicleManagement
                 config.AddProfile(new MappingProfile());
             });
             services.AddSingleton(mappingConfig.CreateMapper());
+            services.AddScoped<IVehicleRepository<Car>, CarRepository>();
             services.AddDbContext<VehicleManagementDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();        
             

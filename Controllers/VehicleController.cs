@@ -16,11 +16,13 @@ namespace VehicleManagement.Controllers
     {
         private readonly IMapper mapper;
         private readonly VehicleManagementDbContext context;
+        private readonly IVehicleRepository<Car> repository;
 
-        public VehicleController(IMapper mapper, VehicleManagementDbContext context)
+        public VehicleController(IMapper mapper, VehicleManagementDbContext context, IVehicleRepository<Car> repository)
         {
             this.mapper = mapper;
             this.context = context;
+            this.repository = repository;
         }
         [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody] SaveCarResource vehicleResource)
@@ -33,28 +35,23 @@ namespace VehicleManagement.Controllers
                 ModelState.AddModelError("ModelId", "Invalid Model Id");
                 return BadRequest(ModelState);
             }
-
             var vehicle = mapper.Map<SaveCarResource, Car>(vehicleResource);
             vehicle.LastUpdate = DateTime.Now;
-            context.Cars.Add(vehicle);
+            context.Cars.Add(vehicle);            
             await context.SaveChangesAsync();
-            var result = mapper.Map<Car, SaveCarResource>(vehicle);
+            vehicle = await repository.GetVehicle(vehicle.Id);
+            var result = mapper.Map<Vehicle, CarResource>(vehicle);
             return Ok(result);
+            
         }
         [HttpGet("{id:int}")]
         public async Task<IActionResult>GetVehicles(int id)
         {
-            
-            var vehicle = await context.Vehicles
-                            .Include(v => v.Type)
-                            .Include(v => v.Model)
-                           .ThenInclude(v => v.Make)
-                            .SingleOrDefaultAsync(v=>v.Id == id);
-
-            if (vehicle == null)
+            var car = await repository.GetVehicle(id);
+            if (car == null)
                 return NotFound();
-            var vehicleResource = mapper.Map<Vehicle, CarResource>(vehicle);
-            return Ok(vehicleResource);
+            var carResource = mapper.Map<Vehicle, CarResource>(car);
+            return Ok(carResource);
         }      
 
         }

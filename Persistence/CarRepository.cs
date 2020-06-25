@@ -7,22 +7,24 @@ using VehicleManagement.Models;
 
 namespace VehicleManagement.Persistence
 {
-    public class VehicleRepository
+    public class CarRepository : IVehicleRepository<Car>
     {
         private readonly VehicleManagementDbContext context;
 
-        public VehicleRepository(VehicleManagementDbContext context)
+        public CarRepository(VehicleManagementDbContext context)
         {
             this.context = context;
         }
-        public async Task<Vehicle>GetVehicle(int id)=>
-        
-            await context.Vehicles
+        public async Task<Car>GetVehicle(int id)
+        {
+            return  await context.Cars
                            .Include(v => v.Type)
                            .Include(v => v.Model)
                           .ThenInclude(v => v.Make)
-                           .SingleOrDefaultAsync(v => v.Id == id);
+                           .SingleOrDefaultAsync(v => v.Id == id);           
 
-        
+
+        }
+
     }
 }
