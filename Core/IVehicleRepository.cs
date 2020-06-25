@@ -3,7 +3,7 @@ using VehicleManagement.Migrations;
 using VehicleManagement.Models;
 
 
-namespace VehicleManagement.Persistence
+namespace VehicleManagement.Core
 {
     public interface IVehicleRepository<TVehicle> where TVehicle : Models.Vehicle
     {

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using VehicleManagement.Core;
 
 namespace VehicleManagement.Persistence
 {

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,8 +8,7 @@ using Microsoft.Extensions.Hosting;
 using VehicleManagement.Persistence;
 using AutoMapper;
 using VehicleManagement.Mapping;
-using Newtonsoft.Json;
-using Microsoft.Extensions.Options;
+using VehicleManagement.Core;
 using VehicleManagement.Models;
 
 namespace VehicleManagement
