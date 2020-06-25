@@ -8,5 +8,6 @@ namespace VehicleManagement.Persistence
     public interface IVehicleRepository<TVehicle> where TVehicle : Models.Vehicle
     {
         Task<TVehicle> GetVehicle(int id);
+        void AddVehicle(TVehicle t);
     }
 }   

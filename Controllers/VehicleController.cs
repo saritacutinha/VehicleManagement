@@ -14,36 +14,32 @@ namespace VehicleManagement.Controllers
     [Route("/api/vehicles")]
     public class VehicleController : Controller
     {
-        private readonly IMapper mapper;
-        private readonly VehicleManagementDbContext context;
+        private readonly IMapper mapper;       
         private readonly IVehicleRepository<Car> repository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public VehicleController(IMapper mapper, VehicleManagementDbContext context, IVehicleRepository<Car> repository)
+        public VehicleController(IMapper mapper, IVehicleRepository<Car> repository, IUnitOfWork unitOfWork)
         {
-            this.mapper = mapper;
-            this.context = context;
+            this.mapper = mapper;            
             this.repository = repository;
+            this.unitOfWork = unitOfWork;
         }
         [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody] SaveCarResource vehicleResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var model = await context.Models.FindAsync(vehicleResource.ModelId);
-            if (model == null)
-            {
-                ModelState.AddModelError("ModelId", "Invalid Model Id");
-                return BadRequest(ModelState);
-            }
+           
             var vehicle = mapper.Map<SaveCarResource, Car>(vehicleResource);
             vehicle.LastUpdate = DateTime.Now;
-            context.Cars.Add(vehicle);            
-            await context.SaveChangesAsync();
+            repository.AddVehicle(vehicle);
+            await unitOfWork.CompleteAsync();
+
             vehicle = await repository.GetVehicle(vehicle.Id);
             var result = mapper.Map<Vehicle, CarResource>(vehicle);
-            return Ok(result);
-            
+            return Ok(result);            
         }
+
         [HttpGet("{id:int}")]
         public async Task<IActionResult>GetVehicles(int id)
         {

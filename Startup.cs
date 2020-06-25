@@ -33,6 +33,7 @@ namespace VehicleManagement
             });
             services.AddSingleton(mappingConfig.CreateMapper());
             services.AddScoped<IVehicleRepository<Car>, CarRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<VehicleManagementDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();        
             

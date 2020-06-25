@@ -26,5 +26,10 @@ namespace VehicleManagement.Persistence
 
         }
 
+        public void AddVehicle(Car car)
+        {
+            context.Cars.Add(car);
+        }
+
     }
 }
